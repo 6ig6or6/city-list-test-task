@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: postgres_cities_container
+    image: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: cities
+      PGDATA: /data/postgres
+    volumes:
+      - postgres_cities:/data/postgres
+    ports:
+      - "5433:5432"
+    restart: unless-stopped
+
+  pgadmin:
+    container_name: pgadmin_cities_container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: email@pgadmin.org
+      PGADMIN_DEFAULT_PASSWORD: password
+      PGADMIN_CONFIG_SERVER_MODE: 'False'
+    volumes:
+      - pgadmin_cities:/var/lib/pgadmin
+    ports:
+      - "5052:80"
+    restart: unless-stopped
+
+volumes:
+  postgres_cities:
+  pgadmin_cities:
