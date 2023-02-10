@@ -26,11 +26,12 @@ public class CityControllerImpl implements CityController {
     public ResponseEntity<Page<CityDto>> getCitiesByName(final String name,
                                                          final int page,
                                                          final int size) {
-        return null;
+        Page<CityDto> citiesPage = cityService.findCitiesByName(name, page, size);
+        return new ResponseEntity<>(citiesPage, HttpStatus.OK);
     }
 
     @Override
     public ResponseEntity<CityDto> updateCityById(final Long id, final CityDto cityDto) {
-        return null;
+        return new ResponseEntity<>(cityService.updateCityById(id, cityDto), HttpStatus.OK);
     }
 }

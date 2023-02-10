@@ -9,5 +9,7 @@ public interface CityService {
 
     Page<CityDto> findCitiesByName(String name, int page, int size);
 
-    CityDto updateCityById(Long id, CityDto city);
+    CityDto updateCityById(Long id, CityDto updatedCity);
+
+    CityDto findById(Long id);
 }
