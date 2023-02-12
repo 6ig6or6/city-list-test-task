@@ -10,7 +10,7 @@ import org.mapstruct.Mapping;
 public interface CityMapper {
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "photoLink", source = "photoLink")
+    @Mapping(target = "photo", source = "photoLink")
     CityDto toCityDto(CityEntity cityEntity);
 
     @InheritInverseConfiguration

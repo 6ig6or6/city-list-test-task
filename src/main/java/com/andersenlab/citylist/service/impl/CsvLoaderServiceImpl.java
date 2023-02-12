@@ -14,10 +14,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.util.Objects;
+import java.util.Set;
 
 @Service
 @RequiredArgsConstructor
@@ -27,31 +32,49 @@ public class CsvLoaderServiceImpl implements CsvLoaderService {
     private final CityMapper cityMapper;
 
     @Override
-    public Integer uploadCitiesFromCsvFile(MultipartFile file) {
+    public int uploadCitiesFromCsvFile(MultipartFile file) {
         if (file.isEmpty() || !Objects.requireNonNull(file.getOriginalFilename()).endsWith(".csv")) {
             throw new IllegalArgumentException("Please select a correct CSV file to upload");
         }
         final CsvMapper csvMapper = new CsvMapper();
         csvMapper.registerModule(new JavaTimeModule());
         csvMapper.enable(CsvParser.Feature.SKIP_EMPTY_LINES);
-        final CsvSchema csvSchema = csvMapper
-                .typedSchemaFor(CityDto.class)
-                .withHeader()
-                .withStrictHeaders(true)
-                .withEscapeChar('"')
-                .withNullValue("null")
-                .withColumnSeparator(DELIMITER);
+        final CsvSchema csvSchema = getCsvSchema(csvMapper);
+        final Validator validator = getValidator();
+        int savedCityCount = 0;
         try (MappingIterator<CityDto> iterator = csvMapper
                 .readerWithSchemaFor(CityDto.class)
                 .with(csvSchema)
                 .readValues(new InputStreamReader(file.getInputStream(), Charset.forName("windows-1251")))) {
             while (iterator.hasNext()) {
                 final CityDto cityDto = iterator.nextValue();
-                cityRepository.save(cityMapper.toCityEntity(cityDto));
+                Set<ConstraintViolation<CityDto>> violations = validator.validate(cityDto);
+                if (violations.isEmpty()) {
+                    cityRepository.save(cityMapper.toCityEntity(cityDto));
+                    savedCityCount++;
+                }
             }
         } catch (final IOException e) {
             throw new CSVParsingException();
         }
-        return 1000;
+        return savedCityCount;
+    }
+
+    private CsvSchema getCsvSchema(final CsvMapper csvMapper) {
+        return csvMapper
+                .typedSchemaFor(CityDto.class)
+                .withHeader()
+                .withStrictHeaders(true)
+                .withEscapeChar('"')
+                .withNullValue("null")
+                .withColumnSeparator(DELIMITER);
+    }
+
+    private Validator getValidator() {
+        Validator validator;
+        try (ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory()) {
+            validator = validatorFactory.getValidator();
+        }
+        return validator;
     }
 }

@@ -18,7 +18,7 @@ public class CsvLoaderControllerImpl implements CsvLoaderController {
     @Override
     public ResponseEntity<String> uploadCsv(MultipartFile file) {
         log.info("Starting to upload cities from csv file!");
-        Integer uploadedCitiesCount = csvLoaderService.uploadCitiesFromCsvFile(file);
+        int uploadedCitiesCount = csvLoaderService.uploadCitiesFromCsvFile(file);
         log.info("Uploading has successfully finished!");
         return new ResponseEntity<>(uploadedCitiesCount + " cities were uploaded", HttpStatus.OK);
     }
