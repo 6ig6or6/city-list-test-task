@@ -1,6 +1,7 @@
 package com.andersenlab.citylist.controller;
 
 import com.andersenlab.citylist.dto.CityDto;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Tag(name = "City controller", description = "Controller for performing operations on cities.")
+@SecurityRequirement(name = "cities")
 @RequestMapping("/cities")
 public interface CityController {
     @GetMapping
