@@ -36,12 +36,12 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         UserEntity user = new UserEntity();
         user.setUsername(userDto.getUsername());
         user.setPassword(passwordEncoder.encode(userDto.getPassword()));
-        addRoles(user);
+        this.addRoles(user);
         return userRepository.save(user);
     }
 
     private void addRoles(UserEntity user) {
-        if (userRepository.findAll().size() == 0) {
+        if (userRepository.count() == 0) {
             user.getRoles().add(Role.ROLE_ALLOWED_EDIT);
         } else {
             user.getRoles().add(Role.ROLE_USER);

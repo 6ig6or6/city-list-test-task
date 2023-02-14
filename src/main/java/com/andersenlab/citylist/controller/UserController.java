@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
-@Tag(name = "User controller", description = "Controller for performing operations sign up operations.")
+@Tag(name = "User controller", description = "Controller for performing sign up operations.")
 @SecurityRequirement(name = "cities")
 @RequestMapping("/users")
 public interface UserController {
     @PostMapping
-    ResponseEntity<String> registerUser(@Valid @RequestBody UserDto userDto);
+    ResponseEntity<String> registerUser(@Valid @RequestBody final UserDto userDto);
 }

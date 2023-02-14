@@ -27,13 +27,14 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class CsvLoaderServiceImpl implements CsvLoaderService {
-    private final static char DELIMITER = ',';
+    private static final char DELIMITER = ',';
+    private static final String CSV_FILE_EXTENSION = ".csv";
     private final CityRepository cityRepository;
     private final CityMapper cityMapper;
 
     @Override
     public int uploadCitiesFromCsvFile(MultipartFile file) {
-        if (file.isEmpty() || !Objects.requireNonNull(file.getOriginalFilename()).endsWith(".csv")) {
+        if (file.isEmpty() || !Objects.requireNonNull(file.getOriginalFilename()).endsWith(CSV_FILE_EXTENSION)) {
             throw new IllegalArgumentException("Please select a correct CSV file to upload");
         }
         final CsvMapper csvMapper = new CsvMapper();
@@ -71,10 +72,8 @@ public class CsvLoaderServiceImpl implements CsvLoaderService {
     }
 
     private Validator getValidator() {
-        Validator validator;
         try (ValidatorFactory validatorFactory = Validation.buildDefaultValidatorFactory()) {
-            validator = validatorFactory.getValidator();
+            return validatorFactory.getValidator();
         }
-        return validator;
     }
 }
