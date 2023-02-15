@@ -1,0 +1,47 @@
+databaseChangeLog:
+  - changeSet:
+      id: 3
+      author: Ihar Kalesnikau
+      changes:
+        - createTable:
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  defaultValueSequenceNext: city_id_seq
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: photo
+                  type: varchar(2048)
+                  constraints:
+                    nullable: false
+        - loadData:
+            file: cities.csv
+            relativeToChangelogFile: true
+            separator: ','
+            tableName: cities
+            columns:
+              - column:
+                  name: id
+                  type: NUMERIC
+                  header: 'true'
+              - column:
+                  name: name
+                  type: varchar(50)
+                  header: 'true'
+                  constraints:
+                    nullable: false
+              - column:
+                  name: photo
+                  type: varchar(2048)
+                  header: 'true'
+                  constraints:
+                    nullable: false

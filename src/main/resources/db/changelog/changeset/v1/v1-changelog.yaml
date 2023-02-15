@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: create-sequence-for-city.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create-city-table-and-fill-it-from-csv.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create-sequence-for-user.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: create-user-table.yaml
+      relativeToChangelogFile: true

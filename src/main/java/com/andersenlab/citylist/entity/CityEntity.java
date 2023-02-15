@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -25,8 +26,8 @@ public class CityEntity {
     private final static int MAX_URL_LENGTH = 2048;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "city_id_seq")
+    @SequenceGenerator(name = "city_id_seq", sequenceName = "city_id")
     private Long id;
 
     @Column(name = "name")

@@ -10,6 +10,3 @@ spring:
     url: jdbc:postgresql://localhost:5433/cities
     username: admin
     password: password
-  jpa:
-    hibernate:
-      ddl-auto: update
