@@ -6,6 +6,8 @@ To start the app on your local machine you need to do a few steps:
 
 Also, you may run the app using your IDE
 
-The first user to be registered will receive ROLE_ALLOWED_EDIT.
+Due to the absence of any requirements for registration process,
+the first user to be registered will receive ROLE_ALLOWED_EDIT, others will  get ROLE_USER.
+This logic is to be improved as soon as there will be strict requirements.
 
 Swagger API will be available on http://localhost:8081/list-app/swagger-ui/index.html
