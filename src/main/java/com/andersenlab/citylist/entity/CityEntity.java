@@ -32,19 +32,19 @@ public class CityEntity {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "photo_link", length = MAX_URL_LENGTH)
-    private String photoLink;
+    @Column(name = "photo", length = MAX_URL_LENGTH)
+    private String photo;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CityEntity that = (CityEntity) o;
-        return name.equals(that.name) && Objects.equals(photoLink, that.photoLink);
+        return name.equals(that.name) && Objects.equals(photo, that.photo);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, photoLink);
+        return Objects.hash(name, photo);
     }
 }

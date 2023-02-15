@@ -11,6 +11,7 @@ import com.fasterxml.jackson.dataformat.csv.CsvParser;
 import com.fasterxml.jackson.dataformat.csv.CsvSchema;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +25,7 @@ import java.nio.charset.Charset;
 import java.util.Objects;
 import java.util.Set;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class CsvLoaderServiceImpl implements CsvLoaderService {
@@ -60,6 +62,7 @@ public class CsvLoaderServiceImpl implements CsvLoaderService {
                 }
             }
         } catch (final IOException e) {
+            log.error("Csv uploading failed after uploading {} cities", savedCityCount);
             throw new CSVParsingException();
         }
         return savedCityCount;

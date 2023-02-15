@@ -11,7 +11,7 @@ public interface CityMapper {
 
     @Mapping(target = "id", source = "id")
     @Mapping(target = "name", source = "name")
-    @Mapping(target = "photo", source = "photoLink")
+    @Mapping(target = "photo", source = "photo")
     CityDto toCityDto(CityEntity cityEntity);
 
     @InheritInverseConfiguration
