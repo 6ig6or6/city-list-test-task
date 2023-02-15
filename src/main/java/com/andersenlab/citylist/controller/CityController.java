@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
+
 @Tag(name = "City controller", description = "Controller for performing operations on cities.")
 @SecurityRequirement(name = "cities")
 @RequestMapping("/cities")
@@ -26,6 +28,6 @@ public interface CityController {
                                                   @RequestParam(required = false, defaultValue = "0") final int page,
                                                   @RequestParam(required = false, defaultValue = "6") final int size);
 
-    @PutMapping("/{id}")
-    ResponseEntity<CityDto> updateCityById(@PathVariable final Long id, @RequestBody final CityDto cityDto);
+    @PutMapping
+    ResponseEntity<CityDto> updateCityById(@RequestBody @Valid final CityDto cityDto);
 }

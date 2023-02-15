@@ -36,7 +36,9 @@ public class CityControllerImpl implements CityController {
     }
 
     @Override
-    public ResponseEntity<CityDto> updateCityById(final Long id, final CityDto cityDto) {
+    public ResponseEntity<CityDto> updateCityById(final CityDto cityDto) {
+        final Long id = cityDto.getId();
+
         log.info("Received PUT request to update city with id {}", id);
 
         return new ResponseEntity<>(cityService.updateCityById(id, cityDto), HttpStatus.OK);
