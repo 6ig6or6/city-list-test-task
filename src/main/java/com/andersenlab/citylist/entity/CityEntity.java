@@ -21,13 +21,17 @@ import java.util.Objects;
 @Entity
 @Table(name = "cities")
 public class CityEntity {
+
     private final static int MAX_URL_LENGTH = 2048;
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Long id;
+
     @Column(name = "name")
     private String name;
+
     @Column(name = "photo_link", length = MAX_URL_LENGTH)
     private String photoLink;
 

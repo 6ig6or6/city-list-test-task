@@ -14,12 +14,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @RequiredArgsConstructor
 public class UserControllerImpl implements UserController {
+
     private final UserMapper userMapper;
+
     private final UserService userService;
 
     @Override
     public ResponseEntity<String> registerUser(final UserDto userDto) {
         log.info("Registering user with username {}", userDto.getUsername());
+
         final UserDto registeredUser = userMapper.toUserDto(userService.registerUser(userDto));
         return new ResponseEntity<>("User with username " + registeredUser.getUsername() + " was registered!", HttpStatus.OK);
     }

@@ -14,6 +14,7 @@ import javax.validation.Valid;
 @SecurityRequirement(name = "cities")
 @RequestMapping("/users")
 public interface UserController {
+
     @PostMapping
     ResponseEntity<String> registerUser(@Valid @RequestBody final UserDto userDto);
 }

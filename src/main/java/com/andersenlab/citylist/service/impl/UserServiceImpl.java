@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserDetailsService, UserService {
+
     private final UserRepository userRepository;
+
     private final PasswordEncoder passwordEncoder;
 
     @Override

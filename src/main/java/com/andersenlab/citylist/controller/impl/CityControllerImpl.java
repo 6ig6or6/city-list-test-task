@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Slf4j
 public class CityControllerImpl implements CityController {
+
     private final CityService cityService;
 
     @Override
     public ResponseEntity<Page<CityDto>> getCities(final int page, final int size) {
         log.info("Received GET cities request");
+
         Page<CityDto> citiesPage = cityService.findAllCities(page, size);
         return new ResponseEntity<>(citiesPage, HttpStatus.OK);
     }
@@ -28,6 +30,7 @@ public class CityControllerImpl implements CityController {
                                                          final int page,
                                                          final int size) {
         log.info("Received GET request to find cities with name {}", name);
+
         Page<CityDto> citiesPage = cityService.findCitiesByName(name, page, size);
         return new ResponseEntity<>(citiesPage, HttpStatus.OK);
     }
@@ -35,6 +38,7 @@ public class CityControllerImpl implements CityController {
     @Override
     public ResponseEntity<CityDto> updateCityById(final Long id, final CityDto cityDto) {
         log.info("Received PUT request to update city with id {}", id);
+
         return new ResponseEntity<>(cityService.updateCityById(id, cityDto), HttpStatus.OK);
     }
 }

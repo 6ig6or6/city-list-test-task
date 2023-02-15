@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 public class PasswordEncoderConfig {
+
     private final static int ENCODING_STRENGTH = 13;
 
     @Bean

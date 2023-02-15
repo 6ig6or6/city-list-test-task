@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @SecurityRequirement(name = "cities")
 @RequestMapping("/cities")
 public interface CityController {
+
     @GetMapping
     ResponseEntity<Page<CityDto>> getCities(@RequestParam(required = false, defaultValue = "0") final int page,
                                             @RequestParam(required = false, defaultValue = "6") final int size);

@@ -27,9 +27,13 @@ import java.util.Set;
 @Service
 @RequiredArgsConstructor
 public class CsvLoaderServiceImpl implements CsvLoaderService {
+
     private static final char DELIMITER = ',';
+
     private static final String CSV_FILE_EXTENSION = ".csv";
+
     private final CityRepository cityRepository;
+
     private final CityMapper cityMapper;
 
     @Override

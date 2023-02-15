@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 @SecurityRequirement(name = "cities")
 @RequestMapping("/csv")
 public interface CsvLoaderController {
+
     @PostMapping(value = "/upload", consumes = {"multipart/form-data"})
     ResponseEntity<String> uploadCsv(@RequestParam("file") final MultipartFile file);
 }
