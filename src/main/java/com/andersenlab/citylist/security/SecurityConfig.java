@@ -36,7 +36,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers(HttpMethod.PUT, "/cities/*").hasAuthority(Role.ROLE_ALLOWED_EDIT.name())
+                .antMatchers(HttpMethod.PUT, "/cities").hasAuthority(Role.ROLE_ALLOWED_EDIT.name())
                 .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().permitAll()
                 .and()
