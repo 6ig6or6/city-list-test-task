@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: 5
+      author: Ihar Kalesnikau
+      changes:
+        - createTable:
+            tableName: user_entity_roles
+            columns:
+              - column:
+                  name: user_entity_id
+                  type: bigint
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: roles
+                  type: varchar(50)

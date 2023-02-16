@@ -11,3 +11,9 @@ databaseChangeLog:
   - include:
       file: create-user-table.yaml
       relativeToChangelogFile: true
+  - include:
+      file: create-user-entity-roles-table.yaml
+      relativeToChangelogFile: true
+  - include:
+      file: add-foreign-key-to-users-table.yaml
+      relativeToChangelogFile: true
