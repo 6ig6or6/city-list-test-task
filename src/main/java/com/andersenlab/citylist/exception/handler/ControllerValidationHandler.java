@@ -23,4 +23,11 @@ public class ControllerValidationHandler {
                 .collect(Collectors.toList());
         return ResponseEntity.badRequest().body(errors);
     }
+
+    @ExceptionHandler(IllegalArgumentException.class)
+    @ResponseBody
+    public ResponseEntity<?> handleIllegalArgumentException(IllegalArgumentException ex) {
+
+        return ResponseEntity.badRequest().body(ex.getMessage());
+    }
 }
