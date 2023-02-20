@@ -12,5 +12,7 @@ Initial list of cities will be populated from csv file using Liquibase.
 Due to the absence of any requirements for registration process,
 the first user to be registered will receive ROLE_ALLOWED_EDIT, others will get ROLE_USER.
 This logic is to be improved as soon as there will be strict requirements.
+The security implementation is based on HTTP basic for brevity so there is no endpoint for login,
+user credentials should be sent in every request.
 
 Swagger API will be available on http://localhost:8081/list-app/swagger-ui/index.html
