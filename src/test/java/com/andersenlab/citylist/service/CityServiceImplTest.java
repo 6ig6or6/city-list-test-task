@@ -67,7 +67,7 @@ class CityServiceImplTest {
                 new CityEntity(1L, name, "photo_link_1")
         );
         Page<CityEntity> page = new PageImpl<>(cityEntities, pageable, 1);
-        when(cityRepository.findAllByName(name, pageable)).thenReturn(page);
+        when(cityRepository.findAllByNameIgnoreCase(name, pageable)).thenReturn(page);
 
         List<CityDto> cityDtos = Collections.singletonList(
                 new CityDto(1L, name, "photo_link_1")

@@ -27,7 +27,7 @@ public class CityServiceImpl implements CityService {
 
     @Override
     public Page<CityDto> findCitiesByName(String name, int page, int size) {
-        return this.cityRepository.findAllByName(name, PageRequest.of(page, size))
+        return this.cityRepository.findAllByNameIgnoreCase(name, PageRequest.of(page, size))
                 .map(cityMapper::toCityDto);
     }
 

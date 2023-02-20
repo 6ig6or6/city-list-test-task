@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CityRepository extends JpaRepository<CityEntity, Long> {
 
-    Page<CityEntity> findAllByName(String name, Pageable pageable);
+    Page<CityEntity> findAllByNameIgnoreCase(String name, Pageable pageable);
 }
